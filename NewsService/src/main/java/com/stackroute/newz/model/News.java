@@ -8,91 +8,127 @@ public class News {
 	/*
 	 * This class should have ten fields
 	 * (newsId,title,author,description,publishedAt,content,url,urlToImage,Reminder,
-	 * Newssource). This class should also contain the getters and setters for the 
+	 * NewsSource). This class should also contain the getters and setters for the 
 	 * fields along with the no-arg , parameterized	constructor and toString method.
 	 * The value of publishedAt should not be accepted from the user but should be
 	 * always initialized with the system date.
 	 */
 
-	public Reminder getReminder() {
-		return null;
-	}
 
-	public void setReminder(Reminder reminder) {
-		
-	}
+	private int newsId;
+	private String title;
+	private String author;
+	private String description;
+	private Date publishedAt;
+	private String content;
+	private String url;
+	private String urlToImage;
+	private NewsSource newssource;
+	private Reminder reminder;
+	
+public News () {}
 
-	public int getNewsId() {
-		return 0;
-	}
+public News(int newsId, String title, String author, String description, String content, String url,
+		String urlToImage, NewsSource newssource, Reminder reminder) {
+	super();
+	this.newsId = newsId;
+	this.title = title;
+	this.author = author;
+	this.description = description;
+	this.publishedAt = new Date();
+	this.content = content;
+	this.url = url;
+	this.urlToImage = urlToImage;
+	this.newssource = newssource;
+	this.reminder = reminder;
+}
 
-	public void setNewsId(int newsId) {
-		
-	}
+public int getNewsId() {
+	return newsId;
+}
 
-	public String getTitle() {
-		return null;
-	}
+public void setNewsId(int newsId) {
+	this.newsId = newsId;
+}
 
-	public void setTitle(String title) {
+public String getTitle() {
+	return title;
+}
 
-	}
+public void setTitle(String title) {
+	this.title = title;
+}
 
-	public String getAuthor() {
-		return null;
-	}
+public String getAuthor() {
+	return author;
+}
 
-	public void setAuthor(String author) {
+public void setAuthor(String author) {
+	this.author = author;
+}
 
-	}
+public String getDescription() {
+	return description;
+}
 
-	public String getDescription() {
-		return null;
-	}
+public void setDescription(String description) {
+	this.description = description;
+}
 
-	public void setDescription(String description) {
-		
-	}
+public Date getPublishedAt() {
+	return publishedAt;
+}
 
-	public Date getPublishedAt() {
-		return null;
-	}
+public void setPublishedAt() {
+	this.publishedAt = new Date();
+}
 
-	public void setPublishedAt() {
-		
-	}
+public String getContent() {
+	return content;
+}
 
-	public String getContent() {
-		return null;
-	}
+public void setContent(String content) {
+	this.content = content;
+}
 
-	public void setContent(String content) {
-		
-	}
+public String getUrl() {
+	return url;
+}
 
-	public String getUrl() {
-		return null;
-	}
+public void setUrl(String url) {
+	this.url = url;
+}
 
-	public void setUrl(String url) {
-		
-	}
+public String getUrlToImage() {
+	return urlToImage;
+}
 
-	public String getUrlToImage() {
-		return null;
-	}
+public void setUrlToImage(String urlToImage) {
+	this.urlToImage = urlToImage;
+}
 
-	public void setUrlToImage(String urlToImage) {
-		
-	}
+public NewsSource getNewssource() {
+	return newssource;
+}
 
-	public NewsSource getNewssource() {
-		return null;
-	}
+public void setNewssource(NewsSource newssource) {
+	this.newssource = newssource;
+}
 
-	public void setNewssource(NewsSource newssource) {
+public Reminder getReminder() {
+	return reminder;
+}
 
-	}
+public void setReminder(Reminder reminder) {
+	this.reminder = reminder;
+}
+
+@Override
+public String toString() {
+	return "News [newsId=" + newsId + ", title=" + title + ", author=" + author + ", description=" + description
+			+ ", publishedAt=" + publishedAt + ", content=" + content + ", url=" + url + ", urlToImage=" + urlToImage
+			+ ", newsSource=" + newssource + ", reminder=" + reminder + "]";
+}
 
 
 }
