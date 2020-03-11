@@ -1,5 +1,7 @@
 package com.stackroute.userprofile.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -40,8 +42,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 	 */
 
 	public UserProfile registerUser(UserProfile user) throws UserProfileAlreadyExistsException {
-		//userProfileRepository.insert(user);
-		return null;
+		
+		UserProfile uProf = userProfileRepository.insert(user);
+		if(uProf==null) {
+			throw new UserProfileAlreadyExistsException("User Profile already existed");
+		}
+		return uProf;
 	}
 
 	/*
@@ -51,7 +57,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	@Override
 	public UserProfile updateUser(String userId, UserProfile user) throws UserProfileNotFoundException {
-		return null;
+		Optional<UserProfile> uProf = userProfileRepository.findById(userId);
+		if(uProf.isPresent()) {
+			 userProfileRepository.save(user);
+			 return user;
+		}
+			throw new UserProfileNotFoundException("User Profile Not Found");
 	}
 
 	/*
@@ -61,6 +72,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	@Override
 	public boolean deleteUser(String userId) throws UserProfileNotFoundException {
+		Optional<UserProfile> uProf = userProfileRepository.findById(userId);
+		if(uProf.isPresent()) {
+			userProfileRepository.delete(uProf.get());
+			return true;
+		}
 		return false;
 	}
 
@@ -71,6 +87,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	@Override
 	public UserProfile getUserById(String userId) throws UserProfileNotFoundException {
+		Optional<UserProfile> uProf = userProfileRepository.findById(userId);
+		if(uProf.isPresent()) {
+			return uProf.get();
+		}
 		return null;
 	}
 }
