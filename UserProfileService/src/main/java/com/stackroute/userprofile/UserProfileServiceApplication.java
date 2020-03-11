@@ -25,8 +25,8 @@ public class UserProfileServiceApplication {
 	 * object and use setFilter() method to set new instance of JwtFilter object.
 	 * Also specifies the Url patterns for registration bean.
 	 */
-@Bean
-	
+	@Bean
+
 	public CorsFilter cors()
 	{
 		UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource();
@@ -39,25 +39,25 @@ public class UserProfileServiceApplication {
 		return new CorsFilter(source);
 	}
 
-@Bean
-public FilterRegistrationBean<JwtFilter> jwtFilter() {
-	UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource();
-	CorsConfiguration config=new CorsConfiguration();
-	config.setAllowCredentials(true);
-	config.addAllowedOrigin("*");
-	config.addAllowedHeader("*");
-	config.addAllowedMethod("*");
-	source.registerCorsConfiguration("/**", config);
-	
-	final FilterRegistrationBean filterbean=new FilterRegistrationBean(new CorsFilter(source));
-	
-	filterbean.setFilter(new JwtFilter());
-	filterbean.addUrlPatterns("/api/v1/news");
-	
-	return filterbean;
+	@Bean
+	public FilterRegistrationBean<JwtFilter> jwtFilter() {
+		UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource();
+		CorsConfiguration config=new CorsConfiguration();
+		config.setAllowCredentials(true);
+		config.addAllowedOrigin("*");
+		config.addAllowedHeader("*");
+		config.addAllowedMethod("*");
+		source.registerCorsConfiguration("/**", config);
 
-}
-    
+		final FilterRegistrationBean filterbean=new FilterRegistrationBean(new CorsFilter(source));
+
+		filterbean.setFilter(new JwtFilter());
+		filterbean.addUrlPatterns("/api/v1/news");
+
+		return filterbean;
+
+	}
+
 	/*
 	 * 
 	 * You need to run SpringApplication.run, because this method start whole spring
