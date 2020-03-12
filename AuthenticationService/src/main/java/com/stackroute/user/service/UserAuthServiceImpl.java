@@ -4,7 +4,6 @@ import com.stackroute.user.util.exception.UserAlreadyExistsException;
 import com.stackroute.user.util.exception.UserNotFoundException;
 import com.stackroute.user.model.User;
 import com.stackroute.user.repository.UserAuthRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -32,6 +31,7 @@ public class UserAuthServiceImpl implements UserAuthService {
 	 */
 
 	private UserAuthRepository userAuthRepository;
+	
 	@Autowired
 	public UserAuthServiceImpl (UserAuthRepository userAuthRepository) {
 		this.userAuthRepository = userAuthRepository;

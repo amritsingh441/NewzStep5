@@ -75,7 +75,7 @@ public class NewsController {
 	 * without {}.
 	 * 
 	 */
-	@DeleteMapping("news/{userId}/{newsId}")
+	@DeleteMapping("/news/{userId}/{newsId}")
 	public ResponseEntity<?> deleteNews(@PathVariable String userId, @PathVariable int newsId){
 		boolean flag = newsService.deleteNews(userId,newsId);
 		if(flag) {
@@ -96,7 +96,7 @@ public class NewsController {
 	 * without {}.
 	 * 
 	 */
-	@DeleteMapping("news/{userId}")
+	@DeleteMapping("/news/{userId}")
 	public ResponseEntity<?> deleteAllNews(@PathVariable String userId){
 		boolean flag = false;
 		try {
@@ -123,7 +123,7 @@ public class NewsController {
 	 * without {} and "newsid" should be replaced by a valid newsId without {}.
 	 * 
 	 */
-	@PutMapping("news/{userId}/{newsId}")
+	@PutMapping("/news/{userId}/{newsId}")
 	public ResponseEntity<?> updateNews(@PathVariable String userId, @PathVariable int newsId){
 		
 		try {
@@ -147,7 +147,7 @@ public class NewsController {
 	 * without {} and "newsid" should be replaced by a valid newsId without {}.
 	 * 
 	 */
-	@GetMapping("news/{userId}/{newsId}")
+	@GetMapping("/news/{userId}/{newsId}")
 	public ResponseEntity<?> getNewsByNewsId(@PathVariable String userId, @PathVariable int newsId){
 		
 		try {
@@ -170,7 +170,7 @@ public class NewsController {
 	 * 
 	 */
 
-	@GetMapping("news/{userId}")
+	@GetMapping("/news/{userId}")
 	public ResponseEntity<?> getAllNewsByUserId(@PathVariable String userId){
 		List<News> resNewsList =newsService.getAllNewsByUserId(userId);
 		if(resNewsList!=null) {

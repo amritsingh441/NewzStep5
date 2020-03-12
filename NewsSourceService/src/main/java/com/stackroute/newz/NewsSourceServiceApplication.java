@@ -53,7 +53,7 @@ public class NewsSourceServiceApplication {
 		final FilterRegistrationBean filterbean=new FilterRegistrationBean(new CorsFilter(source));
 		
 		filterbean.setFilter(new JwtFilter());
-		filterbean.addUrlPatterns("/api/v1/news");
+		filterbean.addUrlPatterns("/api/v1");
 		
 		return filterbean;
 

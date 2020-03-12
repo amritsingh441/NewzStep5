@@ -29,7 +29,7 @@ public class SwaggerConfig {
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
 	            .select()
-	            .apis(RequestHandlerSelectors.basePackage("com.stackroute.userprofile.controller"))
+	            .apis(RequestHandlerSelectors.basePackage("com.stackroute.user.controller"))
 	            .build()
 	            .apiInfo(apimethod()).useDefaultResponseMessages(false);
 

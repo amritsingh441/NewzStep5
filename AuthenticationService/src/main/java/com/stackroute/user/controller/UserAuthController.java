@@ -1,5 +1,8 @@
 package com.stackroute.user.controller;
 
+import java.util.Date;
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +16,9 @@ import com.stackroute.user.model.User;
 import com.stackroute.user.service.UserAuthService;
 import com.stackroute.user.util.exception.UserAlreadyExistsException;
 import com.stackroute.user.util.exception.UserNotFoundException;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 /*
  * As in this assignment, we are working on creating RESTful web service, hence annotate
@@ -32,6 +38,7 @@ public class UserAuthController {
 	 * keyword
 	 */
 	private UserAuthService userAuthService;
+	
 	@Autowired
 	public UserAuthController(UserAuthService userAuthService) {
 		this.userAuthService=userAuthService;
@@ -57,6 +64,7 @@ public class UserAuthController {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 
+
 	}
 	/* 
 	 * Define a handler method which will authenticate a user by reading the Serialized user
@@ -75,11 +83,35 @@ public class UserAuthController {
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@RequestBody User user){
 		try {
-			userAuthService.findByUserIdAndPassword(user.getUserId(),user.getPassword());
-			return new ResponseEntity<>(HttpStatus.OK);
+			User userObj = userAuthService.findByUserIdAndPassword(user.getUserId(),user.getPassword());
+			if(userObj!=null)
+			{
+				String token=generateToken(user.getUserId());
+				HashMap<String,String> tokenMap=new HashMap<>();
+				tokenMap.put("token", token);
+			   return new ResponseEntity<HashMap>(tokenMap,HttpStatus.OK);
+			}
+			
 		} catch (UserNotFoundException e) {
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			//e.printStackTrace();
+			return new ResponseEntity<String>("Invalid credentials",HttpStatus.UNAUTHORIZED);
 		}
+		return new ResponseEntity<String>("Invalid credentials",HttpStatus.UNAUTHORIZED);
 	}
+	
+	public String generateToken(String userId)
+	
+	{
+		long expirytime=10_00_0000;
+		
+		return Jwts.builder().setSubject(userId)
+				.setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis()+expirytime))
+				.signWith(SignatureAlgorithm.HS256,"secretKey")
+				.compact();
+				
+				
+    }
+
 
 }

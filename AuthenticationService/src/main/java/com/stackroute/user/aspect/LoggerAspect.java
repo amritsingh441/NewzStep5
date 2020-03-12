@@ -32,19 +32,19 @@ public class LoggerAspect {
 		return new LoggerAspect();
 	}
 	
-	@Before("execution(* com.stackroute.userprofile.controller.*.*(..)))")
+	@Before("execution(* com.stackroute.user.controller.*.*(..)))")
 	public void beforeAdviceImplMethod(JoinPoint jp){
 		logger.debug("Executing beforeAdviceImplMethod() "+ jp.getSignature().getName());
 	}
-	@After("execution(* com.stackroute.userprofile.controller.*.*(..)))")
+	@After("execution(* com.stackroute.user.controller.*.*(..)))")
 	public void afterAdviceImplMethod(JoinPoint jp){
 		logger.debug("Executing afterAdviceImplMethod() "+ jp.getSignature().getName());
 	}
-	@AfterReturning("execution(* com.stackroute.userprofile.controller.*.*(..)))")
+	@AfterReturning("execution(* com.stackroute.user.controller.*.*(..)))")
 	public void afterReturningAdviceImplMethod(JoinPoint jp){
 		logger.debug("Executing afterReturningAdviceImplMethod() "+ jp.getSignature().getName());
 	}
-	@AfterThrowing("execution(* com.stackroute.userprofile.controller.*.*(..)))")
+	@AfterThrowing("execution(* com.stackroute.user.controller.*.*(..)))")
 	public void afterThrowingAdviceImplMethod(JoinPoint jp){
 		logger.debug("Executing afterThrowingAdviceImplMethod() "+ jp.getSignature().getName());
 	}

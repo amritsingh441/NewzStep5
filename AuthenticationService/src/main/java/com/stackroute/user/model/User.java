@@ -27,11 +27,9 @@ public class User {
 	private String cpassword;
 	
 	public User() {
-		super();
 	}	
 	
 	public User(String userId, String password, String cpassword) {
-		super();
 		this.userId = userId;
 		this.password = password;
 		this.cpassword = cpassword;
